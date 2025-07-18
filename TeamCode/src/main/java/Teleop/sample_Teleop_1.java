@@ -34,7 +34,7 @@ public class sample_Teleop_1 extends OpMode {
 
     //arm, tube, and claw values
     public static int tube_speed = 20;
-    public static int tube_min = 50;
+    public static int tube_min = 20;
     public static int tube_max = 300;
 
     public static int arm_pickup = 1100;
@@ -46,7 +46,7 @@ public class sample_Teleop_1 extends OpMode {
 
     //set the initial values for the mechanisms
     public static int arm_target = 100;
-    public static int tube_target = 50;
+    public static int tube_target = 20;
     public static double claw_target = 0.5;
 
 
