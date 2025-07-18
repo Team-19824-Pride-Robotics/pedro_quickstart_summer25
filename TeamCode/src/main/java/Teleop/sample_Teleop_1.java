@@ -7,6 +7,7 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.localization.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -33,19 +34,19 @@ public class sample_Teleop_1 extends OpMode {
 
     //arm, tube, and claw values
     public static int tube_speed = 20;
-    public static int tube_min = 10;
-    public static int tube_max = 4000;
+    public static int tube_min = 50;
+    public static int tube_max = 300;
 
-    public static int arm_pickup = 100;
-    public static int arm_score = 80;
-    public static int arm_hover = 50;
+    public static int arm_pickup = 1100;
+    public static int arm_score = 700;
+    public static int arm_hover = 1000;
 
     public static double claw_open = 0;
     public static double claw_close = 0.5;
 
     //set the initial values for the mechanisms
-    public static int arm_target = 10;
-    public static int tube_target = 10;
+    public static int arm_target = 100;
+    public static int tube_target = 50;
     public static double claw_target = 0.5;
 
 
@@ -58,7 +59,9 @@ public class sample_Teleop_1 extends OpMode {
         tube = hardwareMap.get(DcMotorEx.class, "tube");
         arm = hardwareMap.get(DcMotorEx.class, "arm");
         claw = hardwareMap.get(Servo.class, "claw");
-        tube.setDirection(DcMotorEx.Direction.REVERSE);
+
+        tube.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     }
 
@@ -94,10 +97,13 @@ public class sample_Teleop_1 extends OpMode {
         //the dpad is used to move the box tube in or out
         if(gamepad2.dpad_up) {
             tube_target = tube_max;
+
         }
         if(gamepad2.dpad_down) {
             tube_target = tube_min;
+
         }
+
 
         //the buttons are used to send the arm to its positions
         if(gamepad2.x) {
